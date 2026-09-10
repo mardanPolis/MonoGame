@@ -83,6 +83,11 @@ namespace Microsoft.Xna.Framework.Graphics
             return GraphicsAdapter.Adapters[displayIndex];
         }
 
+        public static int GetDisplayIndexForWindow(IntPtr windowHandle)
+        {
+            return Sdl.Window.GetDisplayIndex(windowHandle);
+        }
+
         /// <summary>
         /// Used to request creation of the reference graphics device, 
         /// or the default hardware accelerated device (when set to false).
