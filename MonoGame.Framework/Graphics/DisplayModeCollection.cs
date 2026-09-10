@@ -57,6 +57,17 @@ namespace Microsoft.Xna.Framework.Graphics
             }
         }
 
+        /// <summary>
+        /// Gets the <see cref="DisplayMode"/> instance with the specified index.
+        /// </summary>
+        public DisplayMode this[int modeIndex]
+        {
+            get
+            {
+                return _modes[modeIndex];
+            }
+        }
+
         /// <inheritdoc />
         public IEnumerator<DisplayMode> GetEnumerator()
         {
@@ -72,17 +83,12 @@ namespace Microsoft.Xna.Framework.Graphics
         {
             // Sort the modes in a consistent way that happens
             // to match XNA behavior on some graphics devices.
-
-            modes.Sort(delegate(DisplayMode a, DisplayMode b)
-            {
-                if (a == b) 
-                    return 0;
-                if (a.Format <= b.Format && a.Width <= b.Width && a.Height <= b.Height) 
-                    return -1;
-                return 1;
-            });
-
             _modes = modes;
         }
+
+        /// <summary>
+        /// Gets the display mode amount.
+        /// </summary>
+        public int Length => _modes.Count;
     }
 }

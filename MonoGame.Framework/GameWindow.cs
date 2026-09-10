@@ -74,6 +74,14 @@ namespace Microsoft.Xna.Framework
 			}
 		}
 
+		public virtual bool IsMinimized
+		{
+			get
+			{
+				return false;
+			}
+		}
+
         /// <summary>
         /// Determines whether the border of the window is visible. Currently only supported on the WindowsDX and DesktopGL platforms.
         /// </summary>

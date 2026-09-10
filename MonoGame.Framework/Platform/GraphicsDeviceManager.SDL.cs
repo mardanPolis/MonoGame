@@ -40,8 +40,9 @@ namespace Microsoft.Xna.Framework
             }
 
             Sdl.GL.SetAttribute(Sdl.GL.Attribute.DoubleBuffer, 1);
-            Sdl.GL.SetAttribute(Sdl.GL.Attribute.ContextMajorVersion, 2);
-            Sdl.GL.SetAttribute(Sdl.GL.Attribute.ContextMinorVersion, 1);
+            Sdl.GL.SetAttribute(Sdl.GL.Attribute.ContextMajorVersion, 4);
+            Sdl.GL.SetAttribute(Sdl.GL.Attribute.ContextMinorVersion, 6);
+            Sdl.GL.SetAttribute(Sdl.GL.Attribute.ContextProfileMAsl, 1);
 
             if (presentationParameters.MultiSampleCount > 0)
             {

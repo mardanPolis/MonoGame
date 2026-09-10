@@ -6,7 +6,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.Utilities;
 
 namespace Microsoft.Xna.Framework
@@ -79,6 +78,15 @@ namespace Microsoft.Xna.Framework
             {
                 Sdl.Window.SetBordered(_handle, value ? 0 : 1);
                 _borderless = value;
+            }
+        }
+
+        public override bool IsMinimized
+        {
+            get
+            {
+				var flags = Sdl.Window.GetWindowFlags(Handle);
+				return (flags & Sdl.Window.State.Minimized) != 0;
             }
         }
 

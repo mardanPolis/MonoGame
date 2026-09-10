@@ -45,6 +45,7 @@ namespace Microsoft.Xna.Framework.Graphics
         private SurfaceFormat format;
         private int height;
         private int width;
+        private int refreshRate;
 
         #endregion Fields
 
@@ -79,6 +80,14 @@ namespace Microsoft.Xna.Framework.Graphics
         }
 
         /// <summary>
+        /// Gets a value indicating the screen refresh rate.
+        /// </summary>
+        public int RefreshRate
+        {
+            get { return this.refreshRate; }
+        }
+
+        /// <summary>
         /// Gets the bounds of the display that is guaranteed to be visible by the users screen.
         /// </summary>
         public Rectangle TitleSafeArea {
@@ -95,6 +104,15 @@ namespace Microsoft.Xna.Framework.Graphics
             this.height = height;
             this.format = format;
         }
+
+        internal DisplayMode(int width, int height, int refreshRate, SurfaceFormat format)
+        {
+            this.width = width;
+            this.height = height;
+            this.refreshRate = refreshRate;
+            this.format = format;
+        }
+
 
         #endregion Constructors
 
@@ -131,7 +149,8 @@ namespace Microsoft.Xna.Framework.Graphics
             }
             return (left.format == right.format) &&
                 (left.height == right.height) &&
-                (left.width == right.width);
+                (left.width == right.width) &&
+                (left.refreshRate == right.refreshRate);
         }
 
         #endregion Operators
@@ -147,13 +166,13 @@ namespace Microsoft.Xna.Framework.Graphics
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return (this.width.GetHashCode() ^ this.height.GetHashCode() ^ this.format.GetHashCode());
+            return (this.width.GetHashCode() ^ this.height.GetHashCode() ^ this.format.GetHashCode() ^ this.refreshRate.GetHashCode());
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
-            return "{Width:" + this.width + " Height:" + this.height + " Format:" + this.Format + " AspectRatio:" + this.AspectRatio + "}";
+            return "{" + this.width + "x" + this.height + $" @ " + this.refreshRate + "hz Format:" + this.Format + " AspectRatio:" + this.AspectRatio + "}";
         }
 
         #endregion Public Methods
