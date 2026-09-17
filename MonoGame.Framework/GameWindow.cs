@@ -74,6 +74,9 @@ namespace Microsoft.Xna.Framework
 			}
 		}
 
+        /// <summary>
+        /// Returns if the window is minimized.
+        /// </summary>
 		public virtual bool IsMinimized
 		{
 			get
@@ -254,6 +257,13 @@ namespace Microsoft.Xna.Framework
 	    {
             EventHelpers.Raise(this, KeyUp, e);
 	    }
+#endif
+
+#if DESKTOPGL
+	    /// <summary>
+	    /// Returns the window display index.
+	    /// </summary>
+		public abstract int GetDisplayIndex();
 #endif
 
         internal void OnFileDrop(FileDropEventArgs e)

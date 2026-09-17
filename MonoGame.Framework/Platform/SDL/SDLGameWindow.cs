@@ -188,6 +188,11 @@ namespace Microsoft.Xna.Framework
             Dispose(false);
         }
 
+        public static int GetDisplayIndexForWindow(IntPtr windowHandle)
+        {
+            return Sdl.Window.GetDisplayIndex(windowHandle);
+        }
+
         private static int GetMouseDisplay()
         {
             var rect = new Sdl.Rectangle();
@@ -216,6 +221,14 @@ namespace Microsoft.Xna.Framework
             Sdl.Mouse.ShowCursor(visible ? 1 : 0);
         }
 
+	    /// <summary>
+	    /// Returns the window display index.
+	    /// </summary>
+        public override int GetDisplayIndex()
+        {
+            return Sdl.Window.GetDisplayIndex(Handle);
+        } 
+
         public override void BeginScreenDeviceChange(bool willBeFullScreen)
         {
             _willBeFullScreen = willBeFullScreen;
@@ -226,7 +239,7 @@ namespace Microsoft.Xna.Framework
             _screenDeviceName = screenDeviceName;
 
             var prevBounds = ClientBounds;
-            var displayIndex = Sdl.Window.GetDisplayIndex(Handle);
+            var displayIndex = GetDisplayIndex();
 
             Sdl.Rectangle displayRect;
             Sdl.Display.GetBounds(displayIndex, out displayRect);
